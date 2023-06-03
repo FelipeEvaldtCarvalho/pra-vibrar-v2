@@ -5,9 +5,11 @@
   <pv-action />
   <pv-text />
   <pv-categories />
+  <pv-about-us />
 </template>
 
 <script>
+import PvAboutUs from "./components/PvAboutUs.vue";
 import PvAction from "./components/PvAction.vue";
 import PvBanner from "./components/PvBanner.vue";
 import PvBannerText from "./components/PvBannerText.vue";
@@ -24,6 +26,7 @@ export default {
     PvAction,
     PvText,
     PvCategories,
+    PvAboutUs,
   },
 };
 </script>
