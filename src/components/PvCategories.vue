@@ -35,7 +35,7 @@ export default {
     return {
       activeCategorie: 0,
       activeAnimateDuration: 1,
-      inactiveAnimateDuration: 0.5,
+      inactiveAnimateDuration: 1,
       categories: [
         {
           title: "Vibradores",
@@ -69,11 +69,7 @@ export default {
       gsap.set(this.$refs.image_container_vibs, { aspectRatio: "1 / 1" });
       gsap.set(this.$refs.image_vibs, { filter: "none" });
       gsap.set(this.$refs.inner_title_vibs, { opacity: 0 });
-      gsap.set(this.$refs.text_vibs, {
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
-      });
+      gsap.set(this.$refs.text_vibs, { height: "auto" });
       console.log(this.$refs);
     },
     active(elementClass) {
@@ -99,11 +95,9 @@ export default {
       );
       gsap.fromTo(
         elementText,
-        { display: "none" },
+        { height: 0 },
         {
-          display: "flex",
-          flexDirection: "column",
-          gap: "1rem",
+          height: "auto",
           duration: this.activeAnimateDuration,
         }
       );
@@ -134,8 +128,11 @@ export default {
       );
       gsap.fromTo(
         elementText,
-        { display: "flex" },
-        { display: "none", duration: 0.2 }
+        { height: "auto" },
+        {
+          height: 0,
+          duration: this.inactiveAnimateDuration,
+        }
       );
     },
   },
@@ -165,7 +162,12 @@ section {
     flex-direction: column;
     gap: 2rem;
     .text {
-      display: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      height: 0;
+      overflow: hidden;
+
       h1 {
         font-size: 24px;
         font-weight: 600;
