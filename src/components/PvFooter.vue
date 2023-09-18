@@ -3,7 +3,7 @@
     <a href="">
       <img :src="require('@/assets/images/logo.png')" alt="Logo" />
     </a>
-    <div class="list">
+    <div class="list contact">
       <span class="list__item--icon">
         <ion-icon class="c-gray" name="call"></ion-icon>
         <p class="c-gray">(51) 989 304 355</p>
@@ -64,6 +64,7 @@ footer {
     letter-spacing: 0.3vw;
     gap: 1rem;
 
+    a,
     &__item--icon {
       display: flex;
       flex-direction: column;
@@ -75,6 +76,7 @@ footer {
         margin-bottom: 8px;
         gap: 0.5rem;
         flex-direction: row;
+        align-self: flex-start;
       }
 
       ion-icon {
