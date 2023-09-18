@@ -3,10 +3,15 @@
     <div
       v-for="(category, index) in categories"
       v-bind:key="index"
-      @click="activeCategorie = index"
-      class="category-item"
+      v-bind:class="`category-item ${
+        index === activeCategorie ? 'active' : 'inactive'
+      }`"
     >
-      <div class="image-container" :ref="`image_container_${category.class}`">
+      <div
+        class="image-container"
+        :ref="`image_container_${category.class}`"
+        @click="activeCategorie = index"
+      >
         <img
           :ref="`image_${category.class}`"
           :src="require(`@/assets/images/${category.img}`)"
@@ -28,11 +33,11 @@
 </template>
 
 <script>
-import { gsap } from "gsap";
 export default {
   name: "PvCategories",
   data() {
     return {
+      windowWidth: 0,
       activeCategorie: 0,
       activeAnimateDuration: 1,
       inactiveAnimateDuration: 1,
@@ -65,87 +70,13 @@ export default {
     };
   },
   methods: {
-    init() {
-      gsap.set(this.$refs.image_container_vibs, { aspectRatio: "1 / 1" });
-      gsap.set(this.$refs.image_vibs, { filter: "none" });
-      gsap.set(this.$refs.inner_title_vibs, { opacity: 0 });
-      gsap.set(this.$refs.text_vibs, { height: "auto" });
-      console.log(this.$refs);
-    },
-    active(elementClass) {
-      const elementImageContainer =
-        this.$refs[`image_container_${elementClass}`];
-      const elementImage = this.$refs[`image_${elementClass}`];
-      const elementInnerTitle = this.$refs[`inner_title_${elementClass}`];
-      const elementText = this.$refs[`text_${elementClass}`];
-      gsap.fromTo(
-        elementImageContainer,
-        { aspectRatio: "5 / 1" },
-        { aspectRatio: "1 / 1", duration: this.activeAnimateDuration }
-      );
-      gsap.fromTo(
-        elementImage,
-        { filter: "saturate(0) contrast(0.5)" },
-        { filter: "none", duration: this.activeAnimateDuration }
-      );
-      gsap.fromTo(
-        elementInnerTitle,
-        { opacity: 1 },
-        { opacity: 0, duration: this.activeAnimateDuration }
-      );
-      gsap.fromTo(
-        elementText,
-        { height: 0 },
-        {
-          height: "auto",
-          duration: this.activeAnimateDuration,
-        }
-      );
-    },
-    inactive(elementClass) {
-      const elementImageContainer =
-        this.$refs[`image_container_${elementClass}`];
-      const elementImage = this.$refs[`image_${elementClass}`];
-      const elementInnerTitle = this.$refs[`inner_title_${elementClass}`];
-      const elementText = this.$refs[`text_${elementClass}`];
-      gsap.fromTo(
-        elementImageContainer,
-        { aspectRatio: "1 / 1" },
-        { aspectRatio: "5 / 1", duration: this.inactiveAnimateDuration }
-      );
-      gsap.fromTo(
-        elementImage,
-        { filter: "none" },
-        {
-          filter: "saturate(0) contrast(0.9) brightness(0.7)",
-          duration: this.inactiveAnimateDuration,
-        }
-      );
-      gsap.fromTo(
-        elementInnerTitle,
-        { opacity: 0 },
-        { opacity: 1, duration: this.inactiveAnimateDuration }
-      );
-      gsap.fromTo(
-        elementText,
-        { height: "auto" },
-        {
-          height: 0,
-          duration: this.inactiveAnimateDuration,
-        }
-      );
-    },
-  },
-  watch: {
-    activeCategorie(newValue, oldValue) {
-      const oldActive = this.categories[oldValue].class;
-      const newActive = this.categories[newValue].class;
-      this.active(newActive);
-      this.inactive(oldActive);
+    handleResize() {
+      this.windowWidth = window.innerWidth;
     },
   },
   mounted() {
-    this.init();
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
   },
 };
 </script>
@@ -154,19 +85,37 @@ export default {
 section {
   padding: 40px;
   width: 100%;
+  max-width: 1250px;
+  margin: auto;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+
+  * {
+    transition: 0.5s all ease;
+  }
+
+  @media (min-width: 769px) {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+  }
   .category-item {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+
+    @media (min-width: 769px) {
+      width: 13%;
+    }
+
     .text {
       display: flex;
       flex-direction: column;
       gap: 1rem;
       height: 0;
       overflow: hidden;
+      opacity: 0;
 
       h1 {
         font-size: 24px;
@@ -186,6 +135,14 @@ section {
       width: 100%;
       height: 100%;
       aspect-ratio: 5 / 1;
+      cursor: pointer;
+
+      @media (min-width: 769px) {
+        height: 50vw;
+        max-height: 500px;
+        width: 100%;
+        align-items: end;
+      }
 
       img {
         position: absolute;
@@ -202,6 +159,53 @@ section {
         text-transform: uppercase;
         font-size: 24px;
         z-index: 2;
+        @media (min-width: 769px) {
+          word-break: break-all;
+          font-size: 2vw;
+        }
+        @media (min-width: 769px) {
+          word-break: break-all;
+          font-size: 2vw;
+        }
+        @media (min-width: 1440px) {
+          word-break: break-all;
+          font-size: 29px;
+        }
+      }
+    }
+  }
+  .active {
+    @media (min-width: 769px) {
+      width: 50%;
+      max-width: auto;
+    }
+    .text {
+      height: auto;
+      overflow: initial;
+      opacity: 1;
+      h1 {
+        @media (min-width: 769px) {
+          font-size: 2vw;
+        }
+        @media (min-width: 1440px) {
+          font-size: 29px;
+        }
+      }
+      p {
+        @media (min-width: 1440px) {
+          font-size: 24px;
+        }
+      }
+    }
+    .image-container {
+      aspect-ratio: 1 / 1;
+
+      img {
+        filter: none;
+      }
+
+      &__inner-title {
+        opacity: 0;
       }
     }
   }

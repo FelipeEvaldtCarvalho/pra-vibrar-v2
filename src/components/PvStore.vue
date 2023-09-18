@@ -27,9 +27,11 @@ section {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin: 0 auto;
   margin-top: 80px;
   width: 100%;
   position: relative;
+  max-width: 1250px;
 
   h1 {
     font-size: 24px;
@@ -49,6 +51,7 @@ section {
       height: inherit;
       object-fit: cover;
       filter: contrast(0.7);
+      box-shadow: inset 0px 0px 40px 40px #dba632;
     }
   }
 
@@ -72,7 +75,6 @@ section {
       flex-direction: column;
       align-items: center;
       justify-content: flex-end;
-      padding-top: 50%;
 
       h1 {
         font-size: 24px;
@@ -80,6 +82,10 @@ section {
         top: 50%;
         bottom: 2rem;
         color: $black;
+
+        @media (min-width: 769px) {
+          font-size: 32px;
+        }
       }
     }
   }
@@ -97,6 +103,13 @@ section {
     h1 {
       position: sticky;
       bottom: 2rem;
+
+      @media (min-width: 769px) {
+        font-size: 32px;
+      }
+      @media (min-width: 1500px) {
+        font-size: 48px;
+      }
     }
   }
 }

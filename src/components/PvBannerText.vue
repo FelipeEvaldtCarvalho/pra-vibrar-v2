@@ -22,10 +22,19 @@ export default {
 section {
   width: 100%;
   padding: 1.5rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
 
   .text-container {
     width: inherit;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: 769px) {
+      flex-direction: row;
+      align-items: center;
+    }
 
     p {
       font-size: 16px;
@@ -34,11 +43,19 @@ section {
       color: $gray;
       padding: 0 40px;
       padding-bottom: 2rem;
+
+      @media (min-width: 769px) {
+        font-size: 24px;
+        text-align: left;
+      }
     }
 
     img {
       width: 100%;
       object-fit: cover;
+      @media (min-width: 769px) {
+        width: 40%;
+      }
     }
   }
 }

@@ -24,6 +24,10 @@
   font-size: 12px;
   font-weight: 700;
   letter-spacing: 2px;
+
+  @media (min-width: 769px) {
+    width: 195px;
+  }
 }
 .w-100 {
   width: 100%;

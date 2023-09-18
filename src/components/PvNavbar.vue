@@ -34,10 +34,8 @@ export default {
     scrollPosition(newPosition, oldPostion) {
       if (newPosition > 50) {
         this.$refs.logo.style.height = "50px";
-        this.$refs.nav.style.borderBottom = "1px white solid";
       } else {
         this.$refs.logo.style.height = "35vw";
-        this.$refs.nav.style.borderBottom = "none";
       }
 
       if (oldPostion < newPosition && newPosition > 50) {
@@ -64,9 +62,15 @@ nav {
   background-color: $black;
   width: 100%;
   z-index: 100;
+  border-bottom: 1px $white solid;
+
+  @media (min-width: 1440px) {
+    justify-content: space-around;
+  }
 
   ion-icon {
     font-size: 2rem;
+    cursor: pointer;
   }
 
   img {
@@ -74,6 +78,7 @@ nav {
     min-height: 50px;
     height: 35vw;
     max-height: 150px;
+    cursor: pointer;
   }
 }
 </style>

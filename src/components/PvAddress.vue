@@ -21,6 +21,7 @@ export default {
 
 <style scoped lang="scss">
 section {
+  margin: auto;
   margin-top: 130px;
   padding: 40px;
   display: flex;
@@ -29,14 +30,34 @@ section {
   justify-content: center;
   gap: 2rem;
   text-align: center;
+  max-width: 1200px;
+
+  @media (min-width: 769px) {
+    gap: 3rem;
+    margin-bottom: 130px;
+  }
 
   ion-icon {
     font-size: 25px;
+
+    @media (min-width: 769px) {
+      font-size: 48px;
+    }
   }
 
   p {
     font-size: 16px;
     font-weight: 300;
+
+    @media (min-width: 769px) {
+      font-size: 24px;
+    }
+  }
+
+  .btn {
+    @media (min-width: 769px) {
+      width: 195px;
+    }
   }
 }
 </style>

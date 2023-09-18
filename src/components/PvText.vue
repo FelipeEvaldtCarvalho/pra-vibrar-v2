@@ -23,14 +23,32 @@ section {
   flex-direction: column;
   gap: 37px;
   text-align: center;
+  max-width: 1200px;
+  margin: auto;
+
+  @media (min-width: 769px) {
+    gap: 5rem;
+    margin: 5% auto;
+  }
 
   h1 {
     font-size: 24px;
     font-weight: 600;
+
+    @media (min-width: 769px) {
+      font-size: 32px;
+    }
+    @media (min-width: 1500px) {
+      font-size: 48px;
+    }
   }
   p {
     font-size: 16px;
     font-weight: 300;
+
+    @media (min-width: 769px) {
+      font-size: 24px;
+    }
   }
 }
 </style>

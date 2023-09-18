@@ -32,6 +32,10 @@ section {
   width: 100%;
   position: relative;
 
+  @media (min-width: 769px) {
+    margin-top: 200px;
+  }
+
   h1 {
     font-size: 24px;
     font-weight: 600;
@@ -78,6 +82,14 @@ section {
         position: sticky;
         bottom: 5rem;
         color: $black;
+
+        @media (min-width: 769px) {
+          font-size: 32px;
+        }
+        @media (min-width: 1500px) {
+          bottom: 12rem;
+          font-size: 48px;
+        }
       }
     }
   }
@@ -95,6 +107,13 @@ section {
     h1 {
       position: sticky;
       bottom: 5rem;
+      @media (min-width: 769px) {
+        font-size: 32px;
+      }
+      @media (min-width: 1500px) {
+        bottom: 12rem;
+        font-size: 48px;
+      }
     }
   }
 }

@@ -27,17 +27,34 @@ section {
   padding: 0 40px;
   gap: 2rem;
 
+  @media (min-width: 769px) {
+    gap: 3rem;
+    margin-bottom: 4rem;
+  }
+
   h1 {
     font-size: 24px;
     text-transform: uppercase;
     text-align: center;
     font-weight: 700;
+
+    @media (min-width: 769px) {
+      font-size: 32px;
+    }
+    @media (min-width: 1500px) {
+      font-size: 48px;
+    }
   }
   .social {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 11px;
+
+    @media (min-width: 769px) {
+      flex-direction: row;
+      justify-content: center;
+    }
 
     ion-icon {
       font-size: 25px;
@@ -46,6 +63,13 @@ section {
       text-transform: uppercase;
       font-weight: 700;
       font-size: 14px;
+    }
+  }
+  .btn {
+    cursor: pointer;
+    @media (min-width: 769px) {
+      width: 350px;
+      text-align: center;
     }
   }
 }

@@ -12,6 +12,8 @@ export default {
 <style scoped lang="scss">
 section {
   width: 100%;
+  max-width: 1250px;
+  margin: auto;
   height: 200px;
   background-image: url("../assets/images/action.png");
   background-position: center center;
@@ -20,5 +22,9 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
+
+  @media (min-width: 769px) {
+    height: 400px;
+  }
 }
 </style>
